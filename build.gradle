@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'de.felunka'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.github.pengrad:java-telegram-bot-api:4.5.0'
+}
